@@ -1,37 +1,40 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <vartype.h>
-#include <qprocess.h>
-#include <qdebug.h>
-#include <QTime>
 #include <QDir>
-#include <qfiledialog.h>
-#include <windows.h>
-#include <qmessagebox.h>
-#include <qstandarditemmodel.h>
-#include <qtimer.h>
 #include <QKeyEvent>
-#include <graphwindow.h>
-#include <qelapsedtimer.h>
-#include <qcolordialog.h>
-#include <qsettings.h>
-#include <qregexp.h>
-#include <qdesktopservices.h>
-#include <listwindow.h>
-#include <helpwindow.h>
+#include <QMainWindow>
+#include <QTime>
 #include <aboutwindow.h>
+#include <configwindow.h>
+#include <gdbprocess.h>
+#include <graphwindow.h>
+#include <helpwindow.h>
+#include <listwindow.h>
+#include <logwindow.h>
+#include <openocd.h>
+#include <qcolordialog.h>
+#include <qdebug.h>
+#include <qdesktopservices.h>
+#include <qelapsedtimer.h>
+#include <qfiledialog.h>
+#include <qmessagebox.h>
 #include <qnetworkaccessmanager.h>
 #include <qnetworkreply.h>
-#include <gdbprocess.h>
-#include <openocd.h>
+#include <qprocess.h>
+#include <qregexp.h>
+#include <qsettings.h>
+#include <qstandarditemmodel.h>
+#include <qtimer.h>
 #include <serialocd.h>
-#include <logwindow.h>
-#include <configwindow.h>
+#include <vartype.h>
+#include <windows.h>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -77,36 +80,36 @@ private slots:
     void on_action_del_all_triggered();
 
 private:
-    Ui::MainWindow *ui;
-    QProcess *ocdProcess;
-    GDBProcess *gdb;//GDB进程控制
-    OpenOCD *openocd;//OpenOCD进程控制
-    SerialOCD *serialocd;//串口ocd控制
-    bool connected=false;//标记当前是否已连接
-    QStandardItemModel *tableModel;//表格数据
-    QList<VarInfo> varList;//变量列表
-    QTimer *watchTimer,*tableTimer,*logTimer,*autosaveTimer;//定时器，用于查看变量值、刷新表格、监视日志和定时保存
-    QElapsedTimer *stampTimer;//时间戳定时器指针
-    GraphWindow *graph;//绘图窗口指针
-    bool isWatchProcessing=false;//标记当前是否正在处理变量值查看
-    bool axfChosen=false;//是否已经选择了axf文件
-    ListWindow *listWindow;//选择窗口指针
-    LogWindow *logWindow;//日志窗口指针
-    QMenu *tablePopMenu;//右键点击表格时弹出的菜单
-    ConfigWindowParam configWindowParam;//配置窗口数据
-    void checkUpdate();
-    void checkOpenocdProcess();
-    void setStylesheet();
-    void setConnState(bool connect);
-    void sleep(uint32_t ms);
-    void loadConfFileList();
-    void initTable();
-    void redrawTable();
-    void updateGDBList();
-    void saveToFile(const QString &filename);
-    void loadFromFile(const QString &filename);
-    bool exportCSV(const QString &filename);
-    void loadGlobalConf();
-    void saveGlobalConf();
+    Ui::MainWindow     *ui;
+    QProcess           *ocdProcess;
+    GDBProcess         *gdb;               // GDB进程控制
+    OpenOCD            *openocd;           // OpenOCD进程控制
+    SerialOCD          *serialocd;         // 串口ocd控制
+    bool                connected = false; // 标记当前是否已连接
+    QStandardItemModel *tableModel;        // 表格数据
+    QList<VarInfo>      varList;           // 变量列表
+    QTimer *watchTimer, *tableTimer, *logTimer, *autosaveTimer; // 定时器，用于查看变量值、刷新表格、监视日志和定时保存
+    QElapsedTimer    *stampTimer;                               // 时间戳定时器指针
+    GraphWindow      *graph;                                    // 绘图窗口指针
+    bool              isWatchProcessing = false; // 标记当前是否正在处理变量值查看
+    bool              axfChosen         = false; // 是否已经选择了axf文件
+    ListWindow       *listWindow;                // 选择窗口指针
+    LogWindow        *logWindow;                 // 日志窗口指针
+    QMenu            *tablePopMenu;              // 右键点击表格时弹出的菜单
+    ConfigWindowParam configWindowParam;         // 配置窗口数据
+    void              checkUpdate();
+    void              checkOpenocdProcess();
+    void              setStylesheet();
+    void              setConnState(bool connect);
+    void              sleep(uint32_t ms);
+    void              loadConfFileList();
+    void              initTable();
+    void              redrawTable();
+    void              updateGDBList();
+    void              saveToFile(const QString &filename);
+    void              loadFromFile(const QString &filename);
+    bool              exportCSV(const QString &filename);
+    void              loadGlobalConf();
+    void              saveGlobalConf();
 };
 #endif // MAINWINDOW_H

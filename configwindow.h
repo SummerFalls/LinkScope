@@ -1,22 +1,24 @@
-#ifndef CONFIGWINDOW_H
+﻿#ifndef CONFIGWINDOW_H
 #define CONFIGWINDOW_H
 
 #include <QDialog>
 #include <QSerialPort>
 
-namespace Ui {
+namespace Ui
+{
 class ConfigWindow;
 }
 
-struct ConfigWindowParam {
-    qint32 baudrate;
+struct ConfigWindowParam
+{
+    qint32                baudrate;
     QSerialPort::DataBits databits;
     QSerialPort::StopBits stopbits;
-    QSerialPort::Parity parity;
-    int sampleFreq;
-    int gdbPort;
-    QString gdbParam;
-    QString ocdParam;
+    QSerialPort::Parity   parity;
+    int                   sampleFreq;
+    int                   gdbPort;
+    QString               gdbParam;
+    QString               ocdParam;
 };
 
 class ConfigWindow : public QDialog

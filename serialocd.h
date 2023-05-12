@@ -1,24 +1,25 @@
-#ifndef SERIALOCD_H
+﻿#ifndef SERIALOCD_H
 #define SERIALOCD_H
 
 #define DEBUG_FRAME_HEADER 0xDB
 
 #include <QObject>
-#include <qtcpserver.h>
-#include <qtcpsocket.h>
 #include <QRegExp>
+#include <QTime>
 #include <qserialport.h>
 #include <qserialportinfo.h>
+#include <qtcpserver.h>
+#include <qtcpsocket.h>
 #include <qthread.h>
-#include <QTime>
 #include <qtimer.h>
 
-struct SerialParam {
-    QString name;
-    int baudRate;
+struct SerialParam
+{
+    QString               name;
+    int                   baudRate;
     QSerialPort::DataBits dataBits;
     QSerialPort::StopBits stopBits;
-    QSerialPort::Parity parity;
+    QSerialPort::Parity   parity;
 };
 
 class SerialOCD : public QThread
@@ -27,8 +28,8 @@ class SerialOCD : public QThread
 public:
     explicit SerialOCD(QObject *parent = nullptr);
     QStringList getSerialList();
-    void startConnect(const SerialParam &param,int port);
-    void stopConnect();
+    void        startConnect(const SerialParam &param, int port);
+    void        stopConnect();
 
 signals:
     void onErrorOccur(const QString &info);
@@ -39,29 +40,30 @@ private slots:
     void slotSocketReadyRead();
 
 private:
-    enum SerialCMD{
+    enum SerialCMD
+    {
         SerialCMD_ReadMem,
         SerialCMD_WriteMem,
         SerialCMD_Reset
     };
-    QTcpServer *server;
-    QTcpSocket *socket;
+    QTcpServer  *server;
+    QTcpSocket  *socket;
     QSerialPort *port;
-    QString serialName;
-    SerialParam serialParam;
-    int listenPort;
-    QByteArray serialBuf;
-    QTimer *waitReadMemTimer;
-    void run();
-    bool startServer(int port);
-    void stopServer();
-    void sendToClient(const QString &data);
-    bool startSerial(const SerialParam &param);
-    void stopSerial();
-    void parseSerial();
-    void sendSerialReadMem(int addr,int len);
-    void sendSerialWriteMem(int addr,const QByteArray &data);
-    void sendSerialReset();
+    QString      serialName;
+    SerialParam  serialParam;
+    int          listenPort;
+    QByteArray   serialBuf;
+    QTimer      *waitReadMemTimer;
+    void         run();
+    bool         startServer(int port);
+    void         stopServer();
+    void         sendToClient(const QString &data);
+    bool         startSerial(const SerialParam &param);
+    void         stopSerial();
+    void         parseSerial();
+    void         sendSerialReadMem(int addr, int len);
+    void         sendSerialWriteMem(int addr, const QByteArray &data);
+    void         sendSerialReset();
 };
 
 #endif // SERIALOCD_H

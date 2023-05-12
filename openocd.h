@@ -1,4 +1,4 @@
-#ifndef OPENOCD_H
+﻿#ifndef OPENOCD_H
 #define OPENOCD_H
 
 #include <QObject>
@@ -12,7 +12,7 @@ class OpenOCD : public QObject
 public:
     explicit OpenOCD(QObject *parent = nullptr);
     ~OpenOCD();
-    void start(const QString &chosenInterface,const QString &chosenTarget,const QString &extraParam,int gdbPort);
+    void start(const QString &chosenInterface, const QString &chosenTarget, const QString &extraParam, int gdbPort);
     void stop();
     bool isRunning();
 

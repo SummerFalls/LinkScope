@@ -1,0 +1,31 @@
+{
+    "git-graph.fileEncoding": "utf8",
+    "[c]": {
+        "editor.wordBasedSuggestions": true,
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true,
+        "files.encoding": "utf8bom",
+    },
+    "[cpp]": {
+        "editor.wordBasedSuggestions": true,
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true,
+        "files.encoding": "utf8bom",
+    },
+    "[markdown]": {
+        "editor.wordWrap": "off",
+        "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "files.encoding": "utf8"
+    },
+    "files.associations": {
+        "*.ld": "arm",
+        "*.sct": "cortex-debug.disassembly",
+        "*.qss": "css",
+        "*.dat": "ini"
+    },
+    "svg.preview.background": "editor"
+}
